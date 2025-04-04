@@ -1,0 +1,84 @@
+// React with TypeScript, TanStack Router and Tailwind CSS .cursorrules
+
+// Prefer functional components
+const preferFunctionalComponents = true;
+
+// Code style preferences
+const codeStylePreferences = {
+  useTypesOverInterfaces: true,
+  useFunctionalComponents: true,
+  avoidPropsDestructuring: true,
+  preferExplicitFunctionSyntax: true,
+  useExplicitReturnTypes: true,
+  avoidDefaultExports: true,
+  useNamedExports: true,
+};
+
+// React, TypeScript, TanStack Router and Tailwind CSS best practices
+const reactTypescriptTailwindBestPractices = [
+  "Use React hooks for state management and side effects",
+  "Use type aliases instead of interfaces for better consistency",
+  "Use TanStack Router for routing with code splitting",
+  "Implement Tailwind CSS classes for styling",
+  "Utilize @apply directive in CSS files for reusable styles",
+  "Implement responsive design using Tailwind's responsive classes",
+  "Use Tailwind's configuration file for customization",
+  "Implement dark mode using Tailwind's dark variant",
+  "Use proper TypeScript typing for route params and queries",
+  "Implement lazy loading for route components",
+  "Avoid props destructuring, access props as props.propName",
+  "Use type for component props definition",
+  "Use explicit function syntax for components: export function Component() {}",
+  "Always use named exports instead of default exports",
+];
+
+// Folder structure
+const folderStructure = `
+src/
+├── assets/
+│   ├── react.svg
+│   ├── tailwind.svg
+│   └── tanstack.png
+├── components/
+│   ├── Header.tsx
+│   ├── TimeForm.tsx
+│   ├── TimeItem.tsx
+│   └── TimeList.tsx
+├── routes/
+│   ├── __root.tsx
+│   ├── form.lazy.tsx
+│   ├── index.lazy.tsx
+│   ├── query.lazy.tsx
+│   └── table.tsx
+├── utils/
+│   └── timezones.ts
+├── App.css
+├── index.css
+├── main.tsx
+├── routeTree.gen.ts
+├── table.css
+└── vite-env.d.ts
+`;
+
+// Additional instructions
+const additionalInstructions = `
+1. Use TSX for component templates with proper typing
+2. Implement proper Tailwind CSS purging for production builds
+3. Utilize TanStack Router for type-safe routing
+4. Use Tailwind's @layer directive for custom styles
+5. Implement utility-first CSS approach
+6. Follow React, TypeScript and Tailwind naming conventions
+7. Use TypeScript strict mode for better type safety
+8. Implement proper error boundaries around route components
+9. Use TanStack Router's loaders for data fetching
+10. Use type aliases instead of interfaces for all type definitions
+11. Create reusable hooks for common functionality
+12. Don't destructure props, access them using props.propName pattern
+13. Define functional components with explicit function syntax and named exports:
+    export function Component(props: ComponentProps): JSX.Element { ... }
+14. Avoid arrow function component definitions
+15. Use explicit return types on functions where possible
+16. Never use default exports, always use named exports
+17. Export components directly with the export keyword:
+    export function TimeForm(props: TimeFormProps): JSX.Element { ... }
+`;
