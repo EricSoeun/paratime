@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { timezones, TimezoneData } from '../utils/timezones';
 import { fromZonedTime } from 'date-fns-tz';
+import { TimeZoneMap } from './TimeZoneMap';
 
 // Type pour les props du composant au lieu d'interface
 type TimeFormProps = {
@@ -57,7 +58,11 @@ export function TimeForm(props: TimeFormProps) {
     // L'effet s'occupera d'appeler onTimeChange
   };
 
-  // Le TODO pour l'useEffect est maintenant résolu
+  // Gestionnaire pour la sélection de fuseau horaire depuis la carte
+  const handleMapTimezoneSelect = (timezone: string): void => {
+    setSelectedTimezone(timezone);
+    // L'effet s'occupera d'appeler onTimeChange
+  };
 
   return (
     <div>
@@ -110,8 +115,14 @@ export function TimeForm(props: TimeFormProps) {
 						  />
 						</div>
 					  </div>
-
-
+			  </div>
+			  
+			  {/* Carte des fuseaux horaires */}
+			  <div className="mt-4">
+				<TimeZoneMap 
+				  selectedTimezone={selectedTimezone}
+				  onTimezoneSelect={handleMapTimezoneSelect}
+				/>
 			  </div>
 		</form>
 	</div>
