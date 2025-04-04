@@ -38,3 +38,18 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Styles pour les marqueurs de la carte des fuseaux horaires */
+.timezone-marker {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timezone-marker:hover circle {
+  r: 8;
+  filter: brightness(1.2);
+}
+
+.timezone-marker.selected circle {
+  fill: #FF5533;
+}

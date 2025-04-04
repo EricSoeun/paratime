@@ -43,6 +43,7 @@ export function TimeForm(props: TimeFormProps) {
   // Gestionnaire de changement pour le fuseau horaire
   const handleTimezoneChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedTimezone(event.target.value);
+    console.log("Fuseau horaire sélectionné via select:", event.target.value);
     // L'effet s'occupera d'appeler onTimeChange
   };
 
@@ -60,6 +61,7 @@ export function TimeForm(props: TimeFormProps) {
 
   // Gestionnaire pour la sélection de fuseau horaire depuis la carte
   const handleMapTimezoneSelect = (timezone: string): void => {
+    console.log("Fuseau horaire sélectionné via carte:", timezone);
     setSelectedTimezone(timezone);
     // L'effet s'occupera d'appeler onTimeChange
   };

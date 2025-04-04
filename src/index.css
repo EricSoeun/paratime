@@ -4,6 +4,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Styles spécifiques pour la carte en mode sombre */
+.dark .rsm-geography {
+  fill: #334155;
+  stroke: #475569;
+}
+
+.dark .rsm-marker circle {
+  transition: all 0.2s ease;
+}
+
+.dark .rsm-marker:hover circle {
+  r: 8;
+  filter: brightness(1.2);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
