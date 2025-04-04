@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { timezones, TimezoneData } from '../utils/timezones';
 import { fromZonedTime } from 'date-fns-tz';
 import { TimeZoneMap } from './TimeZoneMap';
@@ -21,21 +21,42 @@ export function TimeForm(props: TimeFormProps) {
     new Date().toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
   );
 
+  // Référence pour stocker la dernière valeur notifiée pour éviter les doublons
+  const lastNotifiedRef = useRef<{ date: string, time: string, timezone: string }>({
+    date: selectedDate,
+    time: selectedTime,
+    timezone: selectedTimezone
+  });
+
   // Effet pour recalculer et notifier le parent lors d'un changement
   useEffect(() => {
     // Vérifier que date et heure sont valides avant de combiner
     if (selectedDate && selectedTime) {
-      // Combiner date et heure en une chaîne ISO-like locale (sans Z ou offset)
-      const localDateTimeString = `${selectedDate}T${selectedTime}:00`; // Ajouter les secondes pour la robustesse du parsing
+      // Vérifier si les valeurs ont réellement changé pour éviter les boucles
+      const currentValues = { date: selectedDate, time: selectedTime, timezone: selectedTimezone };
+      const prevValues = lastNotifiedRef.current;
+      
+      // Ne déclencher que si au moins une valeur a changé
+      if (
+        prevValues.date !== currentValues.date ||
+        prevValues.time !== currentValues.time ||
+        prevValues.timezone !== currentValues.timezone
+      ) {
+        // Combiner date et heure en une chaîne ISO-like locale (sans Z ou offset)
+        const localDateTimeString = `${selectedDate}T${selectedTime}:00`; // Ajouter les secondes pour la robustesse du parsing
 
-      try {
-        // Utiliser fromZonedTime pour obtenir l'objet Date UTC équivalent
-        const utcDate = fromZonedTime(localDateTimeString, selectedTimezone);
-        // Appeler la fonction de rappel du parent
-        props.onTimeChange(utcDate, selectedTimezone);
-      } catch (error) {
-        console.error("Erreur lors de la conversion de la date/heure:", error);
-        // Gérer l'erreur, peut-être afficher un message à l'utilisateur
+        try {
+          // Utiliser fromZonedTime pour obtenir l'objet Date UTC équivalent
+          const utcDate = fromZonedTime(localDateTimeString, selectedTimezone);
+          // Appeler la fonction de rappel du parent
+          props.onTimeChange(utcDate, selectedTimezone);
+          
+          // Mettre à jour la référence
+          lastNotifiedRef.current = currentValues;
+        } catch (error) {
+          console.error("Erreur lors de la conversion de la date/heure:", error);
+          // Gérer l'erreur, peut-être afficher un message à l'utilisateur
+        }
       }
     }
   }, [selectedTimezone, selectedDate, selectedTime, props.onTimeChange]); // Dépendances de l'effet

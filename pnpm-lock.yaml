@@ -35,6 +35,9 @@ importers:
       react-simple-maps:
         specifier: ^3.0.0
         version: 3.0.0(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      topojson-client:
+        specifier: ^3.1.0
+        version: 3.1.0
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.0.8
